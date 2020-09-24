@@ -5,16 +5,11 @@ using UnityEngine;
 public class PropellerSpin : MonoBehaviour    
 {
     public float propellerSpeed = 10;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
+        // Makes propeller spin perpendicular to plane flying direction
         transform.Rotate(Vector3.forward * propellerSpeed);
     }
 }

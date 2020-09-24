@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class PlayerControllerX : MonoBehaviour
 {
-    public float speed = 5;
-    public float rotationSpeed;
+    private float speed = 15;
+    private float rotationSpeed = 100;
     
-    public float verticalInput;
+    private float verticalInput;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void FixedUpdate()
