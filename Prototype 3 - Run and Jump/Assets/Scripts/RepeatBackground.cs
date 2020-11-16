@@ -16,6 +16,7 @@ public class RepeatBackground : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Repeats the background when the scrolling reaches a certain point
         if (transform.position.x < startPos.x - repeatWidth)
         {
             transform.position = startPos;

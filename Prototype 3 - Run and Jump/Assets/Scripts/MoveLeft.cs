@@ -22,6 +22,7 @@ public class MoveLeft : MonoBehaviour
             transform.Translate(Vector3.left * Time.deltaTime * speed);
         }
 
+        // Destroys obstacle prefab off screen
         if (transform.position.x < leftBound && gameObject.CompareTag("Obstacle")){
             Destroy(gameObject);
         }
