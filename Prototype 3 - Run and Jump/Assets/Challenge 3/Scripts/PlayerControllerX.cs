@@ -7,7 +7,7 @@ public class PlayerControllerX : MonoBehaviour
     public bool gameOver;
     public bool isLowEnough;
 
-    private float floatForce = 15.0f;
+    private float floatForce = 20.0f;
     private float gravityModifier = 1.5f;
     private Rigidbody playerRb;
 
@@ -29,8 +29,6 @@ public class PlayerControllerX : MonoBehaviour
         // Apply a small upward force at the start of the game
         playerRb.AddForce(Vector3.up * 5, ForceMode.Impulse);
 
-        //fireworksParticle.position = player.position;
-
     }
 
     // Update is called once per frame
@@ -41,6 +39,7 @@ public class PlayerControllerX : MonoBehaviour
         }
         else if (transform.position.y >= 16){
             isLowEnough = false;
+            playerRb.velocity *= 0.25f;
         }
         // While space is pressed and player is low enough, float up
         if (Input.GetKey(KeyCode.Space) && !gameOver && isLowEnough == true)
@@ -70,9 +69,9 @@ public class PlayerControllerX : MonoBehaviour
 
         }
 
-        else if (other.gameObject.CompareTag("Ground"))
+        else if (other.gameObject.CompareTag("Ground") && !gameOver)
         {
-            playerRb.AddForce(Vector3.up * floatForce * 5, ForceMode.Impulse);
+            playerRb.AddForce(Vector3.up * floatForce, ForceMode.Impulse);
         }
 
     }
