@@ -19,7 +19,13 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Moves enemy spheres toward player
         Vector3 lookDirection = (player.transform.position - transform.position).normalized;
         enemyRb.AddForce(lookDirection * speed);
+
+        // Destroys enemy when falls off map
+        if (transform.position.y < -10){
+            Destroy(gameObject);
+        }
     }
 }

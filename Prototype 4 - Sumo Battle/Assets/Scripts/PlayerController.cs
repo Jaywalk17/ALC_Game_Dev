@@ -21,12 +21,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Moves player forward and backward depending on input
         float forwardInput = Input.GetAxis("Vertical");
         playerRb.AddForce(focalPoint.transform.forward * speed * forwardInput);
-        
         powerUpIndicator.transform.position = transform.position + new Vector3(0, -0.5f, 0);
     }
 
+    // Initiates powerup state when colliding with powerup
     private void OnTriggerEnter(Collider other){
         if (other.CompareTag("Powerup")){
             hasPowerUp = true;
@@ -36,14 +37,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Sends enemy flying when player has powerup
     private float powerUpStrength = 15.0f;
-
     private void OnCollisionEnter(Collision collision){
 
         if (collision.gameObject.CompareTag("Enemy") && hasPowerUp){
-
-        Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
-        Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
+            Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
+            Vector3 awayFromPlayer = (collision.gameObject.transform.position - transform.position);
 
             Debug.Log("Player collided with " + collision.gameObject
             + " with powerup set to " + hasPowerUp);
@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Runs coroutine in background for duration of powerup
     IEnumerator PowerupCountdownRoutine()
     {
         yield return new WaitForSeconds(7);
