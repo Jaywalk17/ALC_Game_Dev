@@ -618,10 +618,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targets:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 553773719656458349, guid: 0ecedce69605740c1873dffa744ae538, type: 3}
+  - {fileID: 6786368206743272957, guid: 798d81a665e9245eda32624e12ed142c, type: 3}
+  - {fileID: 6131776644630947490, guid: 785bbeb1c14a24cdcb34749488610f9f, type: 3}
+  - {fileID: 2178339031089820554, guid: d44c537e287814f42900f98674bd197a, type: 3}
 --- !u!4 &1948860490
 Transform:
   m_ObjectHideFlags: 0
