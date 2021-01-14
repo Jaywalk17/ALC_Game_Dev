@@ -16,17 +16,9 @@ public class GameManager : MonoBehaviour
     private float spawnRate = 1.0f;
 
     public Button restartButton;
+    public GameObject titleScreen;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartCoroutine(SpawnTarget());
-        score = 0;
-        UpdateScore(0);
-        isGameActive = true;
-    }
-
+    // Spawns targets by coroutine in background
     IEnumerator SpawnTarget()
     {
         while(isGameActive){
@@ -36,25 +28,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Initializes game when difficulty button is pressed
+    public void StartGame(int difficulty){
+        StartCoroutine(SpawnTarget());
+        score = 0;
+        UpdateScore(0);
+        isGameActive = true;
+        titleScreen.gameObject.SetActive(false);
+        spawnRate /= difficulty;
+    }
+
+    // Adds points to score total -- differs by object
     public void UpdateScore(int scoreToAdd){
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
     }
 
+    // Sets game over screen active when player loses
     public void GameOver(){
         gameOverText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
         isGameActive = false;        
     }
 
+    // Resets game when restart button is clicked
     public void RestartGame(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -21,6 +21,7 @@ public class Target : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Initializes spawning and movement for targets
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
         targetRb = GetComponent<Rigidbody>();
@@ -31,20 +32,17 @@ public class Target : MonoBehaviour
         transform.position = RandomSpawnPos();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    // Destroys targets when clicked
     private void OnMouseDown(){
         if (gameManager.isGameActive){
             Destroy(gameObject);
+            // Adds particle explosion on click
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
             gameManager.UpdateScore(pointValue);
         }
     }
 
+    // Sets game over if good objects collide with bad ones
     private void OnTriggerEnter(Collider other){
         Destroy(gameObject);
         if (!gameObject.CompareTag("Bad")){
@@ -52,16 +50,17 @@ public class Target : MonoBehaviour
         }
     }
 
-
-
+    // Sets random upward force for each target
     Vector3 RandomForce(){
         return Vector3.up * Random.Range(minSpeed, maxSpeed);
     }
 
+    // Sets random spinning torque for each target
     float RandomTorque(){
         return Random.Range(-maxTorque, maxTorque);
     }
 
+    // Sets random spawn position for each target
     Vector3 RandomSpawnPos(){
         return new Vector3(Random.Range(-xRange, xRange), ySpawnPos);
     }
